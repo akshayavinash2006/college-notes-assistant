@@ -44,7 +44,7 @@ Only rewrite it if necessary.
 history_aware_retriever = create_history_aware_retriever(
     llm=llm,
     retriever=retriever,
-    prompt=contextualize_q_prompt,
+    prompt=contextualize_q_prompt,  
 )
 
 # -----------------------------------------
