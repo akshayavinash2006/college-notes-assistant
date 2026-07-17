@@ -41,6 +41,7 @@ def generate_flashcards(topic: str) -> str:
     """
     Generate flashcards for a topic using the student's notes.
     """
+    print("Flashcard tool called!")
 
     docs = retriever.invoke(topic)
 
@@ -48,12 +49,15 @@ def generate_flashcards(topic: str) -> str:
         doc.page_content for doc in docs
     )
 
-    return flashcard_chain.invoke(
+    result=flashcard_chain.invoke(
         {
             "context": context,
             "topic": topic,
         }
     )
+    print("Flashcard tool result:")
+    print(result)
+    return result
 
 @tool
 def explain_simply(topic: str) -> str:
@@ -91,10 +95,13 @@ def explain_simply(topic: str) -> str:
 
     chain = prompt | llm | StrOutputParser()
 
-    return chain.invoke(
+    result=chain.invoke(
         {
             "context": context,
             "topic": topic,
         }
     )
+    print("Explain simply tool result:")
+    print(result)
+    return result
 
